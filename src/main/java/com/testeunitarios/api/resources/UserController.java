@@ -1,7 +1,9 @@
 package com.testeunitarios.api.resources;
 
 import com.testeunitarios.api.model.Users;
+import com.testeunitarios.api.model.dto.UserDto;
 import com.testeunitarios.api.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private ModelMapper mapper;
     @Autowired
     UserService userService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Users> findById(@PathVariable Integer id){
-        return ResponseEntity.ok().body(userService.findById(id));
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(mapper.map(userService.findById(id), UserDto.class));
     }
 }
