@@ -1,7 +1,7 @@
 package com.testeunitarios.api.service;
 
-import com.testeunitarios.api.model.User;
+import com.testeunitarios.api.model.Users;
 
 public interface UserService {
-    User findById(Integer id);
+    Users findById(Integer id);
 }
