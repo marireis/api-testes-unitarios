@@ -8,7 +8,6 @@ import com.testeunitarios.api.service.UserService;
 import com.testeunitarios.api.service.excepitons.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +42,12 @@ public class UserServiceImpl implements UserService {
     public Users update(UserDto userDto) {
         findByEmail(userDto);
         return userRepository.save(mapper.map(userDto,Users.class));
+    }
+
+    @Override
+    public void delete(Integer id) {
+        findById(id);
+        userRepository.deleteById(id);
     }
 
     private void findByEmail(UserDto userDto){
