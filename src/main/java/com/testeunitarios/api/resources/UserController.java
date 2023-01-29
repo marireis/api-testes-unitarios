@@ -40,4 +40,11 @@ public class UserController {
         return ResponseEntity.created(uri).build();
 
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody UserDto userDto){
+        userDto.setId(id);
+        Users users = userService.update(userDto);
+        return ResponseEntity.ok().body(mapper.map(userService.update(userDto), UserDto.class));
+    }
 }
