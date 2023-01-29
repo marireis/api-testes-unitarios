@@ -3,11 +3,11 @@ package com.testeunitarios.api.service.Impl;
 import com.testeunitarios.api.model.Users;
 import com.testeunitarios.api.model.dto.UserDto;
 import com.testeunitarios.api.repository.UserRepository;
+import com.testeunitarios.api.service.excepitons.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
@@ -23,6 +23,7 @@ class UserServiceImplTest {
     public static final String PASSWORD1 = "123";
     public static final String EMAIL1    = "mm@email.com";
     public static final String NAME1     = "MARINA";
+    public static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado";
 
 
     @InjectMocks
@@ -51,6 +52,18 @@ class UserServiceImplTest {
         assertEquals(ID, response.getId());
         assertEquals(NAME1, response.getName());
         assertEquals(EMAIL1, response.getEmail());
+    }
+
+    @Test
+    void whenFindByIdTheReturnAnObjectNotFoundException(){//quando o id nao for encontrado
+        when(userRepository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJETO_NÃO_ENCONTRADO));
+
+        try{
+            userServiceImpl.findById(ID);
+        }catch (Exception ex){
+            assertEquals(ObjectNotFoundException.class, ex.getClass());
+            assertEquals(OBJETO_NÃO_ENCONTRADO, ex.getMessage());
+        }
     }
 
     @Test
