@@ -1,4 +1,4 @@
-package com.testeunitarios.api.resources;
+package com.testeunitarios.api.resources.controller;
 
 import com.testeunitarios.api.model.Users;
 import com.testeunitarios.api.model.dto.UserDto;
