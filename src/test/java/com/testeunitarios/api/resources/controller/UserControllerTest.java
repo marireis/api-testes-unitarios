@@ -12,8 +12,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +30,7 @@ class UserControllerTest {
     public static final String PASSWORD1 = "123";
     public static final String EMAIL1    = "mm@email.com";
     public static final String NAME1     = "MARINA";
-
+    public static final int INDEX = 0;
     private Users users;
     private UserDto userDto;
     @InjectMocks
@@ -62,7 +65,22 @@ class UserControllerTest {
     }
 
     @Test
-    void findAll() {
+    void whenFindAllTheReturnAnListUserDTO() {
+        when(service.findAll()).thenReturn(List.of(users));
+        when(mapper.map(any(), any())).thenReturn(userDto);
+        ResponseEntity<List<UserDto>> response = controller.findAll();
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(ResponseEntity.class, response.getClass());
+        assertEquals(ArrayList.class, response.getBody().getClass());
+        assertEquals(UserDto.class, response.getBody().get(INDEX).getClass());
+
+        assertEquals(ID, response.getBody().get(INDEX).getId());
+        assertEquals(NAME1, response.getBody().get(INDEX).getName());
+        assertEquals(EMAIL1, response.getBody().get(INDEX).getEmail());
+        assertEquals(PASSWORD1, response.getBody().get(INDEX).getPassword());
     }
 
     @Test
