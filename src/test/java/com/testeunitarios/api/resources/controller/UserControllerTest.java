@@ -31,8 +31,8 @@ class UserControllerTest {
     public static final String EMAIL1    = "mm@email.com";
     public static final String NAME1     = "MARINA";
     public static final int INDEX = 0;
-    private Users users;
-    private UserDto userDto;
+    private Users users = new Users();
+    private UserDto userDto = new UserDto();
     @InjectMocks
     private UserController controller;
 
