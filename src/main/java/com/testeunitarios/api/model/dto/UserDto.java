@@ -14,7 +14,6 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
 
