@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ResourceExceptionHandler {
     @ExceptionHandler(ObjectNotFoundException.class)
-    public ResponseEntity<StandarError>objectNotFound(
+    public ResponseEntity<StandardError>objectNotFound(
             ObjectNotFoundException ex, HttpServletRequest request){
-        StandarError error = new StandarError(LocalDateTime.now(),
+        StandardError error = new StandardError(LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(),
                 ex.getMessage(),
                 request.getRequestURI());
@@ -22,10 +22,10 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegratyViolationException.class)
-    public ResponseEntity<StandarError>dataIntegratyViolationException(
+    public ResponseEntity<StandardError>dataIntegratyViolationException(
             DataIntegratyViolationException ex, HttpServletRequest request){
-        StandarError error =
-                new StandarError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getRequestURI());
+        StandardError error =
+                new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }
