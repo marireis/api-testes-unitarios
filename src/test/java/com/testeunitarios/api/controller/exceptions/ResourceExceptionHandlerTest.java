@@ -1,4 +1,4 @@
-package com.testeunitarios.api.resources.exceptions;
+package com.testeunitarios.api.controller.exceptions;
 
 import com.testeunitarios.api.service.excepitons.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,8 +1,7 @@
-package com.testeunitarios.api.resources.exceptions;
+package com.testeunitarios.api.controller.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 

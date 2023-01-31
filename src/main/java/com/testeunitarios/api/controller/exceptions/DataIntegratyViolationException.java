@@ -1,4 +1,4 @@
-package com.testeunitarios.api.resources.exceptions;
+package com.testeunitarios.api.controller.exceptions;
 
 public class DataIntegratyViolationException extends RuntimeException{
     public DataIntegratyViolationException(String message) {
