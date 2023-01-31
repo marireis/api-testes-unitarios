@@ -1,14 +1,13 @@
-package com.testeunitarios.api.resources.controller;
+package com.testeunitarios.api.controller.controller;
 
+import com.testeunitarios.api.controller.UserController;
 import com.testeunitarios.api.model.Users;
 import com.testeunitarios.api.model.dto.UserDto;
 import com.testeunitarios.api.service.Impl.UserServiceImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

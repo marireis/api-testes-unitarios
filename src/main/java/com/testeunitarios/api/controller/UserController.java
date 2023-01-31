@@ -1,4 +1,4 @@
-package com.testeunitarios.api.resources.controller;
+package com.testeunitarios.api.controller;
 
 import com.testeunitarios.api.model.Users;
 import com.testeunitarios.api.model.dto.UserDto;
@@ -44,10 +44,9 @@ public class UserController {
     }
 
     @PutMapping(value = ID)
-    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody UserDto userDto){
-        userDto.setId(id);
-        Users users = userService.update(userDto);
-        return ResponseEntity.ok().body(mapper.map(userService.update(userDto), UserDto.class));
+    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody UserDto obj) {
+        obj.setId(id);
+        return ResponseEntity.ok().body(mapper.map(userService.update(obj), UserDto.class));
     }
     
     @DeleteMapping(value = ID)

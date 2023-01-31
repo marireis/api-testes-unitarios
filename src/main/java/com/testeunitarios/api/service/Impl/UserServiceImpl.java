@@ -3,7 +3,7 @@ package com.testeunitarios.api.service.Impl;
 import com.testeunitarios.api.model.Users;
 import com.testeunitarios.api.model.dto.UserDto;
 import com.testeunitarios.api.repository.UserRepository;
-import com.testeunitarios.api.resources.exceptions.DataIntegratyViolationException;
+import com.testeunitarios.api.controller.exceptions.DataIntegratyViolationException;
 import com.testeunitarios.api.service.UserService;
 import com.testeunitarios.api.service.excepitons.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -39,9 +39,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users update(UserDto userDto) {
-        findByEmail(userDto);
-        return userRepository.save(mapper.map(userDto,Users.class));
+    public Users update(UserDto obj) {
+        findByEmail(obj);
+        return userRepository.save(mapper.map(obj, Users.class));
     }
 
     @Override
